@@ -29,4 +29,4 @@ jobs:
             SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
             SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
         - name: echo string
-          run: echo "Hello..."
+          run: echo "Hello...Nidhi..."
