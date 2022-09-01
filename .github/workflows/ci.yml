@@ -2,6 +2,8 @@ name: CI Workflow
 on:
   pull_request:
     branches: [develop]
+  push:
+    branches: [develop]
 
 jobs:
   build:
@@ -21,4 +23,13 @@ jobs:
           run: echo "Hi Nidhi.."
         - name: run commands
           run: pwd
-        
+        - name: Build project
+          if: github.event_name == 'push'
+          run: npm run build
+        - name: Deploy to stating
+          if: github.event_name == 'push'
+          run: npx surge --project ./build --domain somber-foot.surge.sh
+          
+          env: 
+            SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
+            SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
