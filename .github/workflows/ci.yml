@@ -1,9 +1,6 @@
 name: CI-Workflow
-on:
-  pull_request:
-    branches: [developBranch]
-  push:
-    branches: [developBranch]
+on: push
+ #   branches: [developBranch]
 jobs:
   build:
     runs-on: ubuntu-latest
