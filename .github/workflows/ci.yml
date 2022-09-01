@@ -17,5 +17,4 @@ jobs:
         - run: npm test -- --coverage
           env: 
             CI: true
-        - name: Just Echo msg
-          run: echo "Hi Nidhi... "
+        
