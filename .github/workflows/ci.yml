@@ -19,10 +19,6 @@ jobs:
         - run: npm test -- --coverage
           env: 
             CI: true
-        - name: Echo string
-          run: echo "Hi Nidhi.."
-        - name: run commands
-          run: pwd
         - name: Build project
           if: github.event_name == 'push'
           run: npm run build
