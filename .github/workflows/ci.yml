@@ -1,9 +1,9 @@
 name: CI-Workflow
 on:
   pull_request:
-    branches: [develop]
+    branches: [developBranch]
   push:
-    branches: [develop]
+    branches: [developBranch]
 
 jobs:
   build:
