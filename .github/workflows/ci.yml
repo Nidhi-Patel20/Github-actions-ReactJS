@@ -32,7 +32,6 @@ jobs:
         with:
           name: build
           path: build
-      #- uses: actions/download-artifact
       - name: Deploy to stating
         if: github.event_name == 'push'
         run: npx surge --project ./build --domain somber-foot.surge.sh
