@@ -1,4 +1,4 @@
-name: Notify on release 
+name: Notify on release
 on:
   release:
     types: [published]
@@ -6,9 +6,9 @@ on:
 jobs:
   slack-message:
     runs-on: ubuntu-latest
-    steps: 
-    - name: slack message
-      run: |
-        curl -X POST -H 'Content-type: application/json' 
-        --data '{"text":"New release ${{ github.event.release.tag_name }} is out! <${{ github.event.release.html_url}}|check out now.> "}' 
-        ${{ secrets.SLACK_WEBHOOK }}
+    steps:
+      - name: slack message
+        run: |
+          curl -X POST -H 'Content-type: application/json' 
+          --data '{"text":"New release ${{ github.event.release.tag_name }} is out! <${{ github.event.release.html_url}}|check out now.> "}' 
+          ${{ secrets.SLACK_WEBHOOK }}
