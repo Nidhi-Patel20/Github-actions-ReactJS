@@ -19,8 +19,8 @@ jobs:
         with:
           node-version: "15.x"
       - run: npm ci
-      - run: npm run format-check
-      - run: npm run format
+     # - run: npm run format-check
+     # - run: npm run format
       - run: npm test -- --coverage
         env:
           CI: true
@@ -43,7 +43,10 @@ jobs:
       #     zip -r build.zip ./build
       #     zip -r coverage.zip ./coverage
       - name: Echo string
-        run: echo "Nidhi.."
+        run:  |
+         echo "Nidhi.."
+         echo ${{ github.event_name }}
+         echo ${{ github.ref }}
       - name: Create release
         if: github.event_name == 'push' && github.ref =='refs/head/main'
         run: npx semantic-release
