@@ -48,7 +48,6 @@ jobs:
          echo "Nidhi patel"
          echo ${{ github.event_name }}
          echo ${{ github.ref }}
-         npx -p node@lts -c "npx semantic-release"
       - name: Create release
         if: github.event_name == 'push' && github.ref =='refs/heads/main'
         run: npx semantic-release 
