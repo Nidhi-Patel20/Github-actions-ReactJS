@@ -19,6 +19,7 @@ jobs:
         with:
           node-version: "15.x"
       - run: npm ci
+      - run: npm install --legacy-peer-deps
      # - run: npm run format-check
      # - run: npm run format
       - run: npm test -- --coverage
@@ -49,7 +50,7 @@ jobs:
          echo ${{ github.ref }}
       - name: Create release
         if: github.event_name == 'push' && github.ref =='refs/heads/main'
-        run: npx semantic-release
+        run: npx semantic-release 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Deploy to Staging
