@@ -1,3 +1,4 @@
+name: Own-Actions-wf
 on: push
 jobs:
   testing-action:
