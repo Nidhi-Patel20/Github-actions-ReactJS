@@ -22,14 +22,14 @@ jobs:
       - run: npm install --legacy-peer-deps
      # - run: npm run format-check
      # - run: npm run format
-      - run: npm test -- --coverage
-        env:
-          CI: true
-      - name: Upload Test Coverage
-        uses: actions/upload-artifact@v1
-        with:
-          name: code-coverage
-          path: coverage
+     # - run: npm test -- --coverage
+     #   env:
+     #     CI: true
+     # - name: Upload Test Coverage
+     #   uses: actions/upload-artifact@v1
+     #   with:
+     #     name: code-coverage
+     #     path: coverage
       - name: Build project
         if: github.event_name == 'push'
         run: npm run build
