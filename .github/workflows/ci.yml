@@ -44,7 +44,7 @@ jobs:
       #     zip -r coverage.zip ./coverage
       - name: Echo string
         run:  |
-         echo "Nidhi.."
+         echo "Nidhi patel"
          echo ${{ github.event_name }}
          echo ${{ github.ref }}
       - name: Create release
