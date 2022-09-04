@@ -8,6 +8,6 @@ jobs:
       - uses: ./actions/hello
         id: hello
         with:
-          who-to-greet: "WORLD..."
+          who-to-greet: "WORLD..!!"
       - run: |
           echo "Time: ${{ steps.hello.outputs.time }}"
