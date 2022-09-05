@@ -7692,21 +7692,31 @@ function register(state, name, method, options) {
 /***/ (function(__unusedmodule, __unusedexports, __webpack_require__) {
 
 const core = __webpack_require__(873);
-const github = __webpack_require__(176);
+const github =__webpack_require__(176);
+try{
+//throw new Error("some error message..");
+ 
+  core.debug('Debugging enabled-->Debug message');
+  core.warning('Warning message in orange');
+  core.error('Error message in red');
 
-try {
-  //throw new Error/("some error message"));
-  const name = core.getInput("who-to-greet");
+  const name =core.getInput('who-to-greet');
+  core.setSecret('name');  //will not appear in logs
+
   console.log(`Hello ${name}`);
 
   const time = new Date();
   core.setOutput("time", time.toTimeString());
 
-  console.log(JSON.stringify(github, null, "\t"));
-} catch (error) {
+  core.startGroup('Logging github object');
+  console.log(JSON.stringify(github, null, '\t'));
+  core.endGroup();
+
+  core.exportVariable("HELLO","hello");
+
+} catch(error) {
   core.setFailed(error.message);
 }
-
 
 /***/ }),
 
