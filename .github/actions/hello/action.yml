@@ -1,14 +1,14 @@
-name: hello All
-author: Nidhi Patel
-description: Information
+name: Hello World
+author: NidhiPatel-20
+description: Some Random description
 inputs:
   who-to-greet:
-    description: "Who to greet"
+    description: "who to greet"
     required: true
     default: Nidhi
 outputs:
-  time:
-    description: "the greeting time"
+  Time:
+    description: "The greeting time"
 runs:
   using: "node12"
   main: "dist/index.js"
