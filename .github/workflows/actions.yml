@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: ./.github/actions/issue
+      - uses: ./.github/actions/issueS
         id: issue
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
