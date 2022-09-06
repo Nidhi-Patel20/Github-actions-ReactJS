@@ -1,0 +1,14 @@
+name: Hello World
+author: NidhiPatel-20
+description: Some Random description Text
+inputs:
+  who-to-greet:
+    description: "who to greet"
+    required: true
+    default: Nidhi
+outputs:
+  Time:
+    description: "The greeting time"
+runs:
+  using: "node12"
+  main: "dist/index.js"

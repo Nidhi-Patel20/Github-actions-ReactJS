@@ -1,12 +1,17 @@
 name: CI-Workflow
 on:
   pull_request:
-    branches: [developBranch]
+    branches: [developBranch, main]
   push:
-    branches: [developBranch]
+    branches: [developBranch, main]
+
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
+      SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
+
     steps:
       - uses: actions/checkout@v1
       - name: Use Nodejs
@@ -14,17 +19,43 @@ jobs:
         with:
           node-version: "15.x"
       - run: npm ci
-      - run: npm run format-check
-      - run: npm run format
+      - run: npm install --legacy-peer-deps
+     # - run: npm run format-check
+     # - run: npm run format
       - run: npm test -- --coverage
         env:
           CI: true
+      - name: Upload Test Coverage
+        uses: actions/upload-artifact@v1
+        with:
+          name: code-coverage
+          path: coverage
       - name: Build project
         if: github.event_name == 'push'
         run: npm run build
-      - name: Deploy to stating
-        if: github.event_name == 'push'
-        run: npx surge --project ./build --domain somber-foot.surge.sh
+      - name: Upload build folder
+        uses: actions/upload-artifact@v1
+        with:
+          name: build
+          path: build
+      # - name: ZIP Assets
+      #   if: github.event_name == 'push' && github.ref =='refs/head/main'
+      #   run: |
+      #     zip -r build.zip ./build
+      #     zip -r coverage.zip ./coverage
+      - name: Echo string
+        run:  |
+         echo "Nidhi Patel"
+         echo ${{ github.event_name }}
+         echo ${{ github.ref }}
+      - name: Create release
+        if: github.event_name == 'push' && github.ref =='refs/heads/main'
+        run: npx semantic-release 
         env:
-          SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
-          SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Deploy to Staging
+        if: github.event_name == 'push' && github.ref =='refs/heads/developBranch'
+        run: npx surge --project ./build --domain somber-foot.surge.sh
+      - name: Deploy to Production
+        if: github.event_name == 'push' && github.ref =='refs/heads/main'
+        run: npx surge --project ./build --domain laughable-interest.surge.sh
