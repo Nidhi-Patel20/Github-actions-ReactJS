@@ -5548,6 +5548,8 @@ exports.default = _default;
 
 const core = __webpack_require__(873);
 const github =__webpack_require__(176);
+
+async function run() {
 try{
 
     const token =core.getInput('token');
@@ -5555,9 +5557,9 @@ try{
     const body =core.getInput('body');
     const assignees =core.getInput('assignees');
 
-    const octokit = new github.GitHub(token);
+    const octokit = github.getOctokit(token);
 
-    const response = octokit.issues.create({
+    const response = octokit.rest.issues.create({
        // owner: github.context.repo.owner,
        // repo: github.context.repo.repo,
         ...github.context.repo,
@@ -5572,6 +5574,9 @@ try{
     core.setFailed(error.message)
 
 }
+}
+
+run();
 
 /***/ }),
 
