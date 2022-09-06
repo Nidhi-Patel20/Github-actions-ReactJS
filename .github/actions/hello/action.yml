@@ -1,6 +1,6 @@
 name: Hello World
 author: NidhiPatel-20
-description: Some Random description
+description: Some Random description Text
 inputs:
   who-to-greet:
     description: "who to greet"
