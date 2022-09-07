@@ -1,4 +1,4 @@
-FROM 16-alpine3.16
+FROM alpine3.11
 
 COPY entrypoint.sh /entrypoint.sh
 
