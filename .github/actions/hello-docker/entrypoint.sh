@@ -14,4 +14,4 @@ echo 'random stuff'
 echo 'again random stuff...'
 echo '::endgroup::'
 
-echo '::set-env name=HELLO::hello'
+echo "HELLO=hello" >> $GITHUB_ENV
