@@ -21,6 +21,7 @@ jobs:
         with:
           who-to-greet: "WORLD..!!"
       - run: |
+          chmod +x ./.github/actions/hello-docker/entrypoint.sh 
           echo "Time: ${{ steps.hello.outputs.time }}"
           echo $HELLO
 
