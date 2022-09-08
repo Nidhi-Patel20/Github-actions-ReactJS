@@ -19,7 +19,8 @@ jobs:
           title: Title
           body: Body
           assignees: |
-            NidhiPatel-20 
+            Nidhi-Patel20
+ 
              
       # - run: |
       #     echo ${{ steps.issue.outputs.issue }}
