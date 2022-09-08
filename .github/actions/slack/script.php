@@ -3,53 +3,52 @@
 require_once 'vendor/autoload.php';
 Requests::register_autoloader();
 
-//var_dump($argv);
-//var_dump($_ENV);
+// var_dump($argv);
+// var_dump($_ENV);
 
 echo "::debug ::Sending a request to slack\n";
 
-echo 'Just a message';
-
 $response = Requests::post(
     $_ENV['INPUT_SLACK_WEBHOOK'],
-     #"https://hooks.slack.com/services/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",
     array(
         'Content-type' => 'application/json'
     ),
-    json_encode(array(
-        
+    json_encode(array (
         'blocks' => 
-        array (
             array (
-                "type" => "section",
-                "text" => array (
-                    "type" => "mrkdwn",
-                    "text" => "*Event:*\n{$_ENV['GITHUB_EVENT_NAME']}"
-                    #"You have a new request:\n*<fakeLink.toEmployeeProfile.com|Fred Enriquez - New device request>*",
+                array (
+                    "type" => "section",
+                    "text" => array (
+                        "type" => "mrkdwn",
+                        "text" => $_ENV['INPUT_MESSAGE'],
+                    ),
                 ),
-                
+                array (
+                    "type" => "section",
+                    "fields" => array (
+                        array (
+                            "type" => "mrkdwn",
+                            "text" => "*Repository:*\n{$_ENV['GITHUB_REPOSITORY']}",
+                        ),
+                        array (
+                            "type" => "mrkdwn",
+                            "text" => "*Event:*\n{$_ENV['GITHUB_EVENT_NAME']}",
+                        ),
+                        array (
+                            "type" => "mrkdwn",
+                            "text" => "*Ref:*\n{$_ENV['GITHUB_REF']}",
+                        ),
+                        array (
+                            "type" => "mrkdwn",
+                            "text" => "*SHA:*\n{$_ENV['GITHUB_SHA']}",
+                        ),
+                    ),
                 ),
             ),
-            array (
-                "type" => "section",
-                "fields" => array (
-                    array (
-                        "type" => "mrkdwn",
-                        "text" => "*Repository:*\n{$_ENV['GITHUB_REPOSITORY']}",
-                    ),
-                    array (
-                        "type" => "mrkdwn",
-                        "text" => "*SHA:*\n{$_ENV['GITHUB_SHA']}",
-                    ),
- 
-                ),
-            ),
-         )
-        
-        )
+    ))
 );
 
-echo "::group::Slack Response\n";
+echo "::group::Slack Reponse\n";
 var_dump($response);
 echo "::endgroup::\n";
 
