@@ -12,7 +12,7 @@ jobs:
       #     message: Hello Slack
 
 
-      - uses: SnehaDavari/open-issue@v1.0.0
+      - uses: S./.github/actions/issue
         id: issue
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
