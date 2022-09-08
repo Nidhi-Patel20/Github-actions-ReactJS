@@ -10,7 +10,7 @@ jobs:
         with:
           slack_webhook: ${{ secrets.SLACK_WEBHOOK }}
           message: Hello Slack
-      - uses: ./.github/actions/issue
+      - uses: SnehaDavari/open-issue@v1.0.0
         id: issue
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -18,7 +18,7 @@ jobs:
           body: Body
           assignees: |
             NidhiPatel-20 
-            alialaa
+             
       - run: |
           echo ${{ steps.issue.outputs.issue }}
           chmod +x ./.github/actions/hello-docker/entrypoint.sh 

@@ -11,7 +11,8 @@ echo "::debug ::Sending a request to slack\n";
 echo 'Just a message';
 
 $response = Requests::post(
-     "https://hooks.slack.com/services/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",
+    $_ENV['INPUT_SLACK_WEBHOOK'],
+     #"https://hooks.slack.com/services/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",
     array(
         'Content-type' => 'application/json'
     ),
@@ -51,7 +52,7 @@ $response = Requests::post(
 
 echo "::group::Slack Response\n";
 var_dump($response);
-echo '::endgroup::\n';
+echo "::endgroup::\n";
 
 if(!$response->success) {
     echo $response->body;
