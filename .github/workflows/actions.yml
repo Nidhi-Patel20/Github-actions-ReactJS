@@ -12,7 +12,7 @@ jobs:
       #     message: Hello Slack
 
 
-      - uses: S./.github/actions/issue
+      - uses: ./.github/actions/issue
         id: issue
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
