@@ -10,6 +10,8 @@ jobs:
       #   with:
       #     slack_webhook: ${{ secrets.SLACK_WEBHOOK }}
       #     message: Hello Slack
+
+      
       - uses: SnehaDavari/open-issue@v1.0.0
         id: issue
         with:
