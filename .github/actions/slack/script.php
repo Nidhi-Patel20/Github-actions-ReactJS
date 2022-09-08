@@ -35,8 +35,7 @@ $response = Requests::post(
                 "fields" => array (
                     array (
                         "type" => "mrkdwn",
-                        "text" => #"*Type:*\nComputer (laptop)",
-                        "*Repository:*\n{$_ENV['GITHUB_REPOSITORY']}",
+                        "text" => "*Repository:*\n{$_ENV['GITHUB_REPOSITORY']}",
                     ),
                     array (
                         "type" => "mrkdwn",
